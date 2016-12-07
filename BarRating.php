@@ -76,6 +76,8 @@ class BarRating extends InputWidget
         'star'    => ['showSelectedRating' => false],
     ];
 
+    public $defaultStyles = false;
+
     /**
      * @var string the hashed variable to store the clientOptions
      */
@@ -177,7 +179,7 @@ class BarRating extends InputWidget
 
         $id = $this->options['id'];
         $js .= '$("#' . $id . '").' . self::PLUGIN_NAME . "(" . $this->_hashVar . ");\n";
-        BarRatingAsset::register($view);
+        if ($this->defaultStyles) BarRatingAsset::register($view);
         $view->registerJs($js);
     }
 }
