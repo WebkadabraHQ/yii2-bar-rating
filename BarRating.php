@@ -24,7 +24,12 @@ class BarRating extends InputWidget
     const STYLE_BOX            = 'box';
     const STYLE_BOX_ALT        = 'box-alt';
     const STYLE_STAR           = 'star';
-
+    
+    /**
+     * @var integer position for scripts to be registered at - some times we may need them to be executed in \yii\web\View::POS_LOAD
+     */
+    public $jsPosition;
+    
     /**
      * @var string The CSS style to apply to this widget. Use one of the constants defined in this class.
      * Set this to null if you want to apply your own style.
@@ -180,6 +185,6 @@ class BarRating extends InputWidget
         $id = $this->options['id'];
         $js .= '$("#' . $id . '").' . self::PLUGIN_NAME . "(" . $this->_hashVar . ");\n";
         if ($this->defaultStyles) BarRatingAsset::register($view);
-        $view->registerJs($js);
+        $view->registerJs($js, ($this->jsPosition ? $this->jsPosition : \yii\web\View::POS_READY));
     }
 }
