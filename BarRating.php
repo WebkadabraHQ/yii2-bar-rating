@@ -120,7 +120,7 @@ class BarRating extends InputWidget
         } else {
             echo Html::dropDownList($this->name, $this->value, $this->items, $this->options);
         }
-        echo Html::endTag('div', $this->wrapperOptions);
+        echo Html::endTag('div');
 
         $this->registerClientScript();
     }
